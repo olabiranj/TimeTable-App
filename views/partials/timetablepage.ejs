@@ -1,0 +1,69 @@
+<table id="tblCustomers" cellspacing="0" cellpadding="0">
+    <tr>
+        <th></th>
+        <th>Class</th>
+        <th>8:20-9:00</th>
+        <th>9:00-9:40</th>
+        <th>9:40-10:20</th>
+        <th>10:20-10:30</th>
+        <th>10:30-11:10</th>
+        <th>11:10-11:50</th>
+        <th>11:50-12:30</th>
+        <th>12:30-1:00</th>
+        <th>1:00-1:40</th>
+        <th>1:40-2:20</th>
+    </tr>
+
+    <% let fct = 0
+        for (let d = 0; d < day.length; d++, fct+=8) {
+            for (let i = 0; i < classes.length; i++) {
+                itr = fct + (data.length / classes.length * i);
+    %>
+    <tr>
+        <% if (i == 0) { %>
+            <th rowspan='<%= classes.length %>'> <%= day[d].toUpperCase() %> </th>
+        <% } %>
+        <th><%= classes[i].name %></th>
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t1" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t1')">
+            <%= data[itr].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t1" />
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t2" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t2')">
+            <%= data[itr+1].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t2" />
+
+        <% if (i == 0) { %>
+            <th rowspan="<%= classes.length %>" >SHORT BREAK</th>
+            <% } %>
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t3" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t3')">
+            <%= data[itr+2].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t3" />
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t4" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t4')">
+            <%= data[itr+3].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t4" />
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t5" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t5')">
+            <%= data[itr+4].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t5" />
+
+        <% if (i == 0) { %>
+            <th rowspan="<%= classes.length %>" >LONG BREAK</th>
+        <% } %>
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t6" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t6')">
+            <%= data[itr+5].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t6" />
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t7" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t7')">
+            <%= data[itr+6].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t7" />
+
+        <td id="<%= classes[i].name %>-<%= day[d] %>-t8" onclick="editCell('<%= classes[i].name %>-<%= day[d] %>-t8')">
+            <%= data[itr+7].subject %> </td>
+        <input type="hidden" name="<%= classes[i].name %>-<%= day[d] %>-t8" />
+    </tr>
+    <% } } %>
+</table>

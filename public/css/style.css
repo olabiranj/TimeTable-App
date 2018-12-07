@@ -1,0 +1,60 @@
+.sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+            box-shadow: 2px 5px 10px
+}
+.dark{
+    background-color: #f1f1f1;
+    box-shadow: 2px 5px 10px;
+}
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+
+.row.content {
+     height: 550px;
+}
+#login{
+    background-image: url(../img/hicago.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+#login .col-sm-5{
+    background-color: white;
+    padding: 50px;
+    
+}
+.reg{
+    background-color: skyblue;
+    width: 60%;
+    padding: 20px;
+    opacity: 0.9;
+    margin: 0 auto;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 2px 5px 10px
+}
+#sign-up{
+    background-image: url(../img/5.jpg);
+    
+    background-attachment: fixed;
+}
+.col-sm-7 h1, .col-sm-7 p{
+    color: black;
+}
+.nav-pills li a:active{
+    color: #fff !important;
+    background-color: #4700b3 !important;
+}
+@media screen and (max-width: 768px) {
+    .reg{
+    width: 95%;
+    }
+    .row.content {
+     height: 350px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .reg{
+    width: 80%;
+}
+  }

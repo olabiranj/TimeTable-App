@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>MyTimeTable</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script src="assets/ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+  <style>
+    body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+    }
+
+    h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .jumbotron {
+      background-color: #4700b3;
+      color: #fff;
+      padding: 70px 20px;
+      font-family: Montserrat, sans-serif;
+    }
+    /*
+      .container-fluid {
+          padding: 60px 50px;
+      }
+    */
+
+    .bg-grey {
+      background-color: #f6f6f6;
+    }
+
+    .logo-small {
+      color: #4700b3;
+      font-size: 50px;
+    }
+
+    .logo {
+      color: #4700b3;
+      font-size: 250px;
+      margin-top: 100px;
+    }
+
+    .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+    }
+
+    .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+    }
+
+    .item span {
+      font-style: normal;
+    }
+
+    .panel {
+      border: 1px solid #4700b3;
+      border-radius: 0 !important;
+      transition: box-shadow 0.5s;
+    }
+
+    .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+    }
+
+    .panel-footer .btn:hover {
+      border: 1px solid #4700b3;
+      background-color: #fff !important;
+      color: #f4511e;
+    }
+
+    .panel-heading {
+      color: #fff !important;
+      background-color: #4700b3 !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .panel-footer {
+      background-color: white !important;
+    }
+
+    .panel-footer h3 {
+      font-size: 32px;
+    }
+
+    .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #4700b3;
+      color: #fff;
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      background-color: #4700b3;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.42857143 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+    }
+
+    .navbar li a,
+    .navbar .navbar-brand {
+      color: #fff !important;
+    }
+
+    .navbar-nav li a:hover,
+    .navbar-nav li.active a {
+      color: #4700b3 !important;
+      background-color: #fff !important;
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+    }
+
+    footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #4700b3;
+    }
+
+    .slideanim {
+      visibility: hidden;
+    }
+
+    .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+    }
+
+    @keyframes slide {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+      }
+    }
+
+    @-webkit-keyframes slide {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+      }
+      100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+      }
+      .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .logo {
+        font-size: 150px;
+      }
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      /* Set width to 100% */
+      margin: auto;
+    }
+
+    .carousel-caption h3 {
+      color: #fff !important;
+    }
+
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+      }
+    }
+
+    #myCarousel {
+      margin-top: -30px;
+    }
+  </style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="#myPage"><span class="fa fa-table"></span> MyTimeTable</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <% if( !isLogin ) { %>
+            <li><a href="/student"><span class="fa fa-file"></span> MY TIMETABLE</a></li>
+          <% } %>
+          <li><a class="pagelink" href="#about"><span class="fa fa-tag"></span> ABOUT</a></li>
+          <li><a class="pagelink" href="#contact"><span class="fa fa-mobile-phone"></span> CONTACT</a></li>
+          <li><span class='navbar-text'>|</span></li>
+          <% if( isLogin ) { %>
+            <li><a href="/dashboard"><span class="fa fa-boxes"></span> DASHBOARD</a></li>
+            <li><a href="/logout"><span class="fa fa-sign-out"></span> LOGOUT</a></li>
+          <% } else { %>
+            <li><a class="pagelink" href="#login"><span class="fa fa-sign-in"></span> LOGIN</a></li>
+            <li><a class="pagelink" href="#sign-up"><span class="fa fa-drivers-license"></span>SIGN UP</a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron text-center">
+    <h1>MyTimeTable.com</h1>
+    <p>We specialize in educational lecture schedule...</p>
+  </div>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="img/ny.jpg" alt="New York" width="1200" height="700">
+        <div class="carousel-caption">
+          <p>Artificial intelligence...</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="img/chicago.jpg" alt="Chicago" width="1200" height="700">
+        <div class="carousel-caption">
+          <p>We think on your behalf...</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <img src="img/la.jpg" alt="Los Angeles" width="1200" height="700">
+        <div class="carousel-caption">
+          <p>sit back and use our website...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <!-- login -->
+  <div id="login" class="container-fluid ">
+    <div class="row">
+      <div class="col-sm-7">
+        <br><br>
+        <h1>MyTimeTable.com</h1>
+        <p>stressfree IDE, just for you...</p>
+      </div>
+      <div class="col-sm-5"><br>
+        <form role="form" action="/login/user" method="POST">
+          <div class="form-group">
+            <input type="email" placeholder="School Email" class="form-control input-lg" id="email" name="schEmail">
+          </div>
+          <br>
+          <div class="form-group">
+            <input type="password" placeholder="password" class="form-control input-lg" id="pwd" name="password">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-default" onclick="login()">Submit</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- about -->
+  <div id="about" class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-calendar logo"></span>
+      </div>
+      <div class="col-sm-8"><br><br>
+        <h2>MyTimeTable</h2><br>
+        <h4>A schedule or a timetable, as a basic time-management tool, consists of a list of times at which possible
+          tasks,
+          events, or actions are intended to take place, or of a sequence of events in the chronological order in which
+          such
+          things are intended to take place. The process of creating a schedule - deciding how to order these tasks and
+          how to
+          commit resources between the variety of possible tasks - is called scheduling, and a person responsible for
+          making a particular schedule may be called a scheduler. Making and following schedules is an ancient human
+          activity.</h4><br>
+        <p>In an educational institution a timetable must be established that refers students and teachers to classrooms
+          each
+          hour. The challenge of constructing this schedule for larger institutions was addressed by Gunther Schmidt and
+          Thomas
+          Ströhlein in 1976. They formalized the timetable construction problem, and indicated an iterative process using
+          logical matrices and hypergraphs to obtain a solution.</p>
+        <br>
+        <div class="abt"><a href="#sign-up"><button class="btn btn-default btn-lg">Create Your Timetable</button></a></div><br><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- sign-up -->
+  <div id="sign-up" class=" text-center bg-grey"><br><br>
+    <div class="reg">
+      <form class="form-horizontal" role="form" action="/signup/user" method="POST">
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="email">School Email:</label>
+          <div class="col-sm-9">
+            <input type="email" class="form-control input-sm" id="schemail"  name="schEmail">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="add">School Address:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control input-sm" id="add" name="address">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="schname">School Name:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control input-sm" id="schname" name="schName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="name">Administartor's Name:</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control input-sm" id="name" name="adminName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="pwd">Password:</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control input-sm" id="pwdd" name="password">
+          </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" id="submit" class="btn btn-default" onclick="reg()">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div><br><br>
+  </div>
+
+
+  <!-- Container (Contact Section) -->
+  <div id="contact" class="container bg">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <p>Contact us and we'll get back to you within 24 hours.</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> Lagos, Nigeria</p>
+        <p><span class="glyphicon glyphicon-phone"></span> +2348093481350</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> olabiranj@gmail.com</p>
+      </div>
+      <div class="col-sm-7 slideanim">
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          </div>
+        </div>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-default pull-right" type="submit" onclick="comment()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if (messages.error) { %>
+    <script>
+      alert('<%= messages.error %>');
+    </script>
+  <% } else if (messages.success) { %>
+    <script>
+      alert('<%= messages.success %>');
+    </script>
+  <% } %>
+
+   <% include ./partials/footer.ejs %>
+  <script src="js/script.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".abt a, .navbar a.pagelink, footer a[href='#myPage']").on('click', function (event) {
+
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 900, function () {
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      });
+
+      $(window).scroll(function () {
+        $(".slideanim").each(function () {
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+        });
+      });
+    })
+
+  </script>
+
+</body>
+
+</html>

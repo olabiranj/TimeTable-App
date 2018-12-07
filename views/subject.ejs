@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/assets/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="/css/style.css" rel="stylesheet">
+    <title>Manage Subjects</title>
+    <style>
+        .navbar {
+            margin-bottom: 0;
+            background-color: #4700b3;
+            z-index: 9999;
+            border: 0;
+            font-size: 12px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 4px;
+            border-radius: 0;
+            font-family: Montserrat, sans-serif;
+        }
+
+        .navbar li a,
+        .navbar .navbar-brand {
+            color: #fff !important;
+        }
+
+        .navbar-nav li a:hover,
+        .navbar-nav li.active a {
+            color: #4700b3 !important;
+            background-color: #fff !important;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+    </style>
+</head>
+
+<body onload="dashboardControls()">
+    <% include ./partials/navbar %>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+    <div class="row content">
+        <%- include('./partials/sidebar', {activeNav: 'subject'}); %>
+        <div class="col-sm-9 container-fluid">
+            <% include ./partials/breadcrumb %>
+            <div class="col-sm-12 well dark">
+                <form method="post" class="admin-form" action="">
+                    <div class="form-group col-sm-6">
+                        <label for="name">Subject Name</label>
+                        <input type="text" name="name" class="form-control" />
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="status">Status</label>
+                        <div class="col-sm-12 radio-group">
+                            <input type="radio" name="status" value="true" checked> &nbsp;
+                            <span>Active</span>
+                            <span class="space"></span>
+                            <input type="radio" name="status" value="false">&nbsp;
+                            <span>In Active</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 form-group"></div>
+                    <div class="form-group col-sm-6">
+                        <label for="status">Class</label>
+                        <br/>
+                        <% for(let i=0; i < classes.length; i++) { %>
+                            <div class="col-sm-3 radio-group">
+                                <input type="checkbox" name="class" value="<%= classes[i]._id %>"> &nbsp;
+                                <span><%= classes[i].name %></span><br>
+                                <label for="sel1">No. of Periods:</label>
+                                <select class="form-control" id="sel1" name="periods">
+                                    <option> - </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="col-sm-12">
+                        <button type="submit" name="submit" value="submit" class="btn btn-primary">Create New Subject</button>
+                        <button type="reset" class="btn btn-warning">Reset</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-12 row">
+                <div class="container-fluid">
+                    <% if (subjects.length < 1) { %>
+                        <h2>No Subject in DB</h2>
+                    <% } else { %>
+                        <h2 class="col-sm-12">
+                            <%= pluralize('Subject', subjects.length, true) %>
+                        </h2>
+                        <% for (var i = 0; i < subjects.length; i++) { %>
+                            <div class="col-sm-4 cards">
+                                <div class="well dark">
+                                    <b class="fa-1x"> <%= subjects[i].name %> </b> &emsp;
+                                    <!-- <b class="fa-1x"> <%= subjects[i].periods %> </b> &emsp; -->
+                                    <% if (subjects[i].status == true) { %>
+                                        <i class="pull-right fa-2x fa fa-check-circle text-success"></i>
+                                    <% } else { %>
+                                        <i class="pull-right fa-2x fa fa-times-circle text-warning"></i>
+                                    <% } %>
+                                    <p>
+                                        <% if (subjects[i].periods) { %>
+                                            (
+                                            <%= pluralize('Class', subjects[i].periods.length, true) %>)
+                                        <% } else { %>
+                                            <span class="text-danger"></span>(NO CLASS)</span>
+                                        <% } %>
+                                    </p>
+                                    <hr/>
+                                    <a href="/dashboard/subjects/edit/<%= subjects[i]._id %>" class="text-primary">
+                                        <small><i class="fa fa-edit"></i> Edit</small>
+                                    </a>
+                                    <a class="delete-trigger pull-right text-danger pointer">
+                                        <small><i class="fa fa-trash"></i> Delete</small>
+                                    </a>
+                                    <form method="post" action="/dashboard/subjects/edit/<%= subjects[i]._id %>?_method=DELETE" class="hidden">
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <input type="hidden" name="_id" value="<%= subjects[i]._id %>" />
+                                        <button type="submit" name="submit" value="delete" class="center-block">Confirm Delete</button>
+                                        <button type="reset" class="center-block form-close">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <% } } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <% include ./partials/footer.ejs %> -->
+    <script src="/assets/ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="/assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

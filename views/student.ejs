@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Students' Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="assets/ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-image: url(img/chicago.jpg);
+            background-size: auto;
+        }
+
+        .jumbotron {
+            background-color: #4700b3;
+            color: #fff;
+            padding: 1px 25px;
+            font-family: Montserrat, sans-serif;
+        }
+        table,
+        th,
+        td {
+            background-color: white;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body id="myPage">
+    <div class="jumbotron text-center">
+        <h1>MyTimeTable.com</h1>
+        <p>We specialize in educational lecture schedule...</p>
+    </div>
+
+    <% if (typeof dbData === 'undefined') { %>
+        <div class="reg">
+            <h2>Choose your class:</h2>
+            <hr>
+            <form method="post" action="/student">
+                <div class="col-sm-7">
+                    <select class="form-control input-sm" id="sel1" name="class">
+                    <% for (let i = 0; i < allclasses.length; i++)  {  %>
+                        <option value="<%= allclasses[i].name %>"><%= allclasses[i].name %></option>
+                    <% } %>
+                    </select>
+                </div>
+                <div class="col-sm-5">
+                    <button type="submit" class="btn btn-primary btn-block">View Timetable</button>
+                </div><br><br/>
+            </form>
+        </div>
+
+    <% } else { %>
+        <div class="container">
+            <div class="row content">
+                <div id="table" class="container-fluid">
+                    <h2 class="text-center">TIMETABLE FOR <%= classes[0].name %></h2>
+                    <% include ./partials/timetablepage %>
+                    <br/>
+                    <br/>
+                    <div class="text-center">
+                        <button class="btn btn-primary" name=print value="Print" onClick="window.print()"><span class="fa fa-print"></span></button>
+                        <button class="btn btn-primary" value="Export" onclick="Export()"><span class="fa fa-file-pdf-o"></span></button>
+                        <a class="btn btn-primary" href="/student">Choose another class</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    <% } %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        function Export() {
+            html2canvas(document.getElementById('tblCustomers'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        }
+    </script>
+</body>
+
+
+</html>
