@@ -15,10 +15,11 @@ let usersRouter = require('./routes/users');
 require("./config/passport");
 
 let app = express();
+let db_uri = 'mongodb://mainjoe:tt1234@ds155665.mlab.com:55665/timetable';
+// let db_uri = "mongodb://localhost:27017/timetable";
 
-let db = "mongodb://localhost:27017/timetable";
-mongoose.Promise = global.Promise;
-mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(db_uri, { useNewUrlParser: true, useCreateIndex: true }).then(console.log("database connected")).catch(err => console.log(err));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +37,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: new MongoStore({
-        uri: db,
+        uri: db_uri,
         databaseName: 'timetable',
         collection: 'app_sessions'
     })
