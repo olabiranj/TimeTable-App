@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title%></title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="assets/ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="assets/maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <style>
+        body{
+            background-image: url(../img/timetable.jpg);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <!-- sign-up -->
+    <div id="" class=" text-center bg-grey"><br><br>
+        <div class="reg">
+            <form class="form-horizontal" role="form" action="/signup/user" method="POST">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="email">School Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control input-sm" id="schemail" name="schEmail">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="add">School Address:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="add" name="address">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="schname">School Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="schname" name="schName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="name">Administartor's Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control input-sm" id="name" name="adminName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="pwd">Password:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control input-sm" id="pwdd" name="password">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a href="/"><button type="submit" id="submit" class="btn btn-default">Back to Home</button></a>
+                        <button type="submit" id="submit" class="btn btn-default" onclick="reg()">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div><br><br>
+    </div>
+
+</body>
+</html>

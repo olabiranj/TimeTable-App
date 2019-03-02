@@ -15,6 +15,7 @@ function checkLoginStatus(req, res, next) {
 }
 
 router.get('/', timeTableController.homePage);
+router.get('/signup', timeTableController.signupPage)
 router.get('/student', timeTableController.studentsPage);
 router.post('/student', timeTableController.studentsPost);
 // router.get('/student2', timeTableController.studentsPage2);

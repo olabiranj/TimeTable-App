@@ -59,6 +59,10 @@ exports.homePage = function (req, res, next) {
     res.render('index', { title: 'TimeTable App', isLogin: req.isAuthenticated() });
 };
 
+exports.signupPage = function (req, res, next) {
+    res.render('signup', { title: 'Sign Up'});
+};
+
 exports.reg = function (req, res, next) {
     res.render('registration', { title: '' });
 };
